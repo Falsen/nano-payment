@@ -117,8 +117,7 @@ app.get('/', (request, reply) => {
 })
 
 app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
-	console.log("web request 1")
-	
+
   seed = request.params.seed
     sendto = request.params.sendto
 	  amount = request.params.amount
