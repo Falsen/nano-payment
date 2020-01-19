@@ -5,13 +5,13 @@ const express = require('express')
 
 const app = express()
 const PORT = process.env.PORT || 5000
-
+const nanonode = 'https://nanovault.io/api/node-api'
 
 
 async function publish(blockjson) {	
 console.log("publish called ")
 
-return axios.post('https://nanovault.io/api/node-api', {
+return axios.post(nanonode, {
             action: 'process',
             json_block: 'true',
 			block: blockjson
@@ -28,7 +28,7 @@ return axios.post('https://nanovault.io/api/node-api', {
 async function getrecentblock(account) {	
 console.log("getrecentblock called ")
 	
-  return axios.post('https://nanovault.io/api/node-api', {
+  return axios.post(nanonode, {
             account: account,
             action: 'account_info',
   })
@@ -44,7 +44,7 @@ console.log("getrecentblock called ")
 async function account_info(account) {	
 console.log("account_info called ")
 	
-  return axios.post('https://nanovault.io/api/node-api', {
+  return axios.post(nanonode, {
             account: account,
             action: 'account_info'
   })
@@ -58,7 +58,7 @@ console.log("account_info called ")
 }
 
 async function pendingblock(account) {
- return axios.post('https://nanovault.io/api/node-api', {
+ return axios.post(nanonode, {
             account: account,
             action: 'pending'
   })
@@ -110,6 +110,7 @@ app.get('/', (request, reply) => {
 })
 
 app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
+console.log(new Date())
 
   seed = request.params.seed
     sendto = request.params.sendto
