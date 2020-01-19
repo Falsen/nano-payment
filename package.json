@@ -1,0 +1,31 @@
+{
+  "name": "nano-payment",
+  "version": "1.0.0",
+  "description": "nano currency payment processor ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/besoeasy/nano-payment.git"
+  },
+  "keywords": [
+    "nano",
+    "nanocurrency",
+    "payment",
+    "send"
+  ],
+  "author": "besoeasy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/besoeasy/nano-payment/issues"
+  },
+  "homepage": "https://github.com/besoeasy/nano-payment#readme",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "bignumber.js": "^9.0.0",
+    "express": "^4.17.1",
+    "nanocurrency": "^2.3.0"
+  }
+}
