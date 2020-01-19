@@ -4,7 +4,7 @@
   "description": "nano currency payment processor ",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
 	"start": "node index.js"
   },
   "repository": {
