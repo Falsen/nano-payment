@@ -6,18 +6,19 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 5000
 
+const nanonode = 'https://nanovault.io/api/node-api'
+const representative = 'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd'
+
 
 
 async function publish(blockjson) {	
-console.log("publish called ")
 
-return axios.post('https://nanovault.io/api/node-api', {
+return axios.post(nanonode, {
             action: 'process',
             json_block: 'true',
 			block: blockjson
   })
   .then(function (response) {
-    console.log(response.data);
 	return response.data
   })
   .catch(function (error) {
@@ -27,9 +28,8 @@ return axios.post('https://nanovault.io/api/node-api', {
 }
 
 async function getrecentblock(account) {	
-console.log("getrecentblock called ")
-	
-  return axios.post('https://nanovault.io/api/node-api', {
+
+  return axios.post(nanonode, {
             account: account,
             action: 'account_info',
   })
@@ -43,14 +43,12 @@ console.log("getrecentblock called ")
 }
 
 async function account_info(account) {	
-console.log("account_info called ")
-	
-  return axios.post('https://nanovault.io/api/node-api', {
+
+  return axios.post(nanonode, {
             account: account,
             action: 'account_info'
   })
   .then(function (response) {
-   console.log(response.data.balance)
      return response.data.balance
   })
   .catch(function (error) {
@@ -60,7 +58,7 @@ console.log("account_info called ")
 }
 
 async function pendingblock(account) {
- return axios.post('https://nanovault.io/api/node-api', {
+ return axios.post(nanonode, {
             account: account,
             action: 'pending'
   })
@@ -73,41 +71,80 @@ async function pendingblock(account) {
   
   
   }
+   
+async function block_info(blockid) {
+ return axios.post(nanonode, {
+            hashes: [blockid],
+			json_block: 'true',
+            action: 'blocks_info',
+			pending: 'true'
+  })
+  .then(function (response) {
+   return response.data.blocks[blockid].amount;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  
+  
+  }
+
+async function fetchpending(seed) {
+	
+secretKey = nanocurrency.deriveSecretKey(seed, 0)
+publicKey = nanocurrency.derivePublicKey(secretKey)
+address = nanocurrency.deriveAddress(publicKey)
+
+  
+peniong = await pendingblock(address)
+peniongbal = await block_info(peniong)
+previous = await getrecentblock(address)
+pow = await nanocurrency.computeWork(previous)
+cbal = await account_info(address)
+
+
+puki = new BigNumber(cbal)
+balance = puki.plus(peniongbal) 
+balancex = balance.toFixed()
+
+dd = { balance: balancex, link: peniong, previous: previous, representative: representative, work: pow }
+xxx = await nanocurrency.createBlock(secretKey, dd);
+
+retr = await publish(xxx.block) 
+return retr
+}
 
 async function send(seed,sendto,nano) {
 	
  //change this to any account number you like 
-  const secretKey = nanocurrency.deriveSecretKey(seed, 0)
-  const publicKey = nanocurrency.derivePublicKey(secretKey)
-  const address = nanocurrency.deriveAddress(publicKey)
-  const representative = 'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd'
+secretKey = nanocurrency.deriveSecretKey(seed, 0)
+publicKey = nanocurrency.derivePublicKey(secretKey)
+address = nanocurrency.deriveAddress(publicKey)
+
 
   
-const previous = await getrecentblock(address)
+previous = await getrecentblock(address)
 console.log("LAST BLOCK : " +previous)
-const pow = await nanocurrency.computeWork(previous)
+pow = await nanocurrency.computeWork(previous)
 console.log("WORK : " + pow)
-const cbal = await account_info(address)
+cbal = await account_info(address)
 console.log("BALANCE : " + cbal)
 
 x = new BigNumber('1000000000000000000000000000000')
 xx = x.multipliedBy(nano).toFixed()
-console.log('xx ' +xx)
-
 puki = new BigNumber(cbal)
 balance = puki.minus(xx) 
-console.log(balance.toFixed())
 
 balancex = balance.toFixed()
 
 dd = { balance: balancex, link: sendto, previous: previous, representative: representative, work: pow }
 xxx = await nanocurrency.createBlock(secretKey, dd);
-console.log(xxx)
 
 retr = await publish(xxx.block) 
-
 return retr
 }
+
+
 
 
 
@@ -116,7 +153,18 @@ app.get('/', (request, reply) => {
   reply.send('OK')
 })
 
+app.get('/fetch/:seed', async (request, reply) => {
+console.log(new Date())
+
+  seed = request.params.seed
+  bing = await fetchpending(seed)
+
+  reply.send(bing)
+})
+
+
 app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
+console.log(new Date())
 
   seed = request.params.seed
     sendto = request.params.sendto
