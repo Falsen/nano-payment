@@ -14,3 +14,14 @@ I Recommend Deploying to Heroku [FREE]
 
 HEROKU APP
 https://nano-payment.herokuapp.com/
+
+
+
+
+# TO-DO 
+receive block 
+move seed to header
+add password protection in app
+auto represtative change 
+concurrency 
+work caching 

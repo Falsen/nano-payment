@@ -127,5 +127,4 @@ app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
   reply.send(bing)
 })
 
-
 app.listen(PORT,  '0.0.0.0')
