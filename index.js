@@ -149,29 +149,32 @@ return retr
 
 
 
+
+
 app.get('/', (request, reply) => {
   reply.send('OK')
 })
 
-app.get('/fetch/:seed', (request, reply) => {
+app.get('/fetch/:seed', async (request, reply) => {
 console.log(new Date())
 
-  bing = fetchpending(seed)
+  seed = request.params.seed
+  bing = await fetchpending(seed)
 
-  reply.send('OK')
+  reply.send(bing)
 })
 
 
-app.get('/send/:seed/:sendto/:amount', (request, reply) => {
+app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
 console.log(new Date())
 
   seed = request.params.seed
     sendto = request.params.sendto
 	  amount = request.params.amount
 
-  bing = send(seed,sendto,amount)
+  bing = await send(seed,sendto,amount)
 
-  reply.send('OK')
+  reply.send(bing)
 })
 
 app.listen(PORT,  '0.0.0.0')
