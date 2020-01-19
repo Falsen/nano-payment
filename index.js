@@ -112,7 +112,9 @@ return retr
 
 
 
-
+app.get('/', (request, reply) => {
+  reply.send('OK')
+})
 
 app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
 	console.log("web request 1")
