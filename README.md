@@ -15,7 +15,7 @@ APP /seed/sendto/amount
 
 # TO-DO 
 
-  - receive block 
+  - <s>receive block </s>
   - move seed to header
   - add password protection in app
   - auto represtative change 
