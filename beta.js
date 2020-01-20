@@ -4,12 +4,20 @@ const BigNumber = require('bignumber.js')
 const express = require('express')
 
 const app = express()
-const PORT = process.env.PORT || 5000
+app.listen(process.env.PORT || 5000,  '0.0.0.0')
 
 const nanonode = 'https://nanovault.io/api/node-api'
-const representative = 'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd'
 
+const reparr = [
+'nano_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or',
+'nano_1bananobjcrqugm87e8p3kxkhy7d1bzkty53n889iyunm83cp14rb9fin78p',
+'nano_3jwrszth46rk1mu7rmb4rhm54us8yg1gw3ipodftqtikf5yqdyr7471nsg1k', 
+'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd' 
+ ];
 
+const representative = reparr[Math.floor(Math.random()*reparr.length)]
+
+//const ends
 
 async function publish(blockjson) {	
 
@@ -144,7 +152,7 @@ retr = await publish(xxx.block)
 return retr
 }
 
-
+// functions ends
 
 
 
@@ -162,7 +170,6 @@ console.log(new Date())
   reply.send(bing)
 })
 
-
 app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
 console.log(new Date())
 
@@ -174,5 +181,3 @@ console.log(new Date())
 
   reply.send(bing)
 })
-
-app.listen(PORT,  '0.0.0.0')
