@@ -17,7 +17,7 @@ APP /seed/sendto/amount
   - <s>receive block </s>
   - move seed to header
   - add password protection in app
-  - auto represtative change 
+  - <s>auto represtative change </s> 
   - concurrency 
   - work caching 
   - multiple account number selection
