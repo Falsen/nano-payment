@@ -1,10 +1,9 @@
 # nano-payment
  Simple Nano Currency Payment Processor 
 
-Deploy TO Heroku [FREE] Or Use Shared App 
+Deploy TO Heroku [FREE] 
 
-https://nano-payment.herokuapp.com/
-
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
 ## Usage 

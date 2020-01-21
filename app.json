@@ -1,0 +1,7 @@
+{
+  "name": "nano-payment",
+  "description": "nano currency payment processor ",
+  "repository": "https://github.com/besoeasy/nano-payment",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["nanocurrency", "nano", "bitcoin", "crypto", "payment"]
+}
