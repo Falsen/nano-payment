@@ -27,6 +27,7 @@ return axios.post(nanonode, {
 			block: blockjson
   })
   .then(function (response) {
+	console.log(response.data)
 	return response.data
   })
   .catch(function (error) {
@@ -79,6 +80,23 @@ async function pendingblock(account) {
   
   
   }
+  
+async function pendingblockcount(account) {
+ return axios.post(nanonode, {
+            account: account,
+            action: 'pending'
+  })
+  .then(function (response) {
+	  x = response.data.blocks
+	  
+   return x.length;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  
+  
+  }  
    
 async function block_info(blockid) {
  return axios.post(nanonode, {
@@ -103,7 +121,11 @@ secretKey = nanocurrency.deriveSecretKey(seed, 0)
 publicKey = nanocurrency.derivePublicKey(secretKey)
 address = nanocurrency.deriveAddress(publicKey)
 
-  
+
+apendingblockcount = await pendingblockcount(address)
+
+
+if( apendingblockcount > 0){
 peniong = await pendingblock(address)
 peniongbal = await block_info(peniong)
 previous = await getrecentblock(address)
@@ -120,6 +142,11 @@ xxx = await nanocurrency.createBlock(secretKey, dd);
 
 retr = await publish(xxx.block) 
 return retr
+}else{
+	return '{ "hash" : "no_blocks_left" }';
+}
+
+
 }
 
 async function send(seed,sendto,nano) {
@@ -153,8 +180,6 @@ return retr
 }
 
 // functions ends
-
-
 
 
 app.get('/', (request, reply) => {
