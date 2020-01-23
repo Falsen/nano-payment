@@ -1,9 +1,9 @@
 # nano-payment
  Simple Nano Currency Payment Processor 
 
-Edit and Host On Repl.it
+Edit and Host On Repl.it [Recommend & Free]
 
-
+https://repl.it/github/besoeasy/nano-payment
 
 Deploy TO Heroku [FREE] 
 
