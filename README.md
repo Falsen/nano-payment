@@ -1,7 +1,7 @@
 # nano-payment
  Simple Nano Currency Payment Processor 
 
-Edit and Host On Repl.it [Recommend, Free, Instant, No Account Needed ]
+EDIT and RUN On Repl.it [Recommend, Free, Instant, No Account Needed ]
 
 [Repl.it](https://repl.it/github/besoeasy/nano-payment)
 
