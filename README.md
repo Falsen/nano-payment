@@ -3,7 +3,7 @@
 
 Edit and Host On Repl.it [Recommend & Free]
 
-[!Repl.it](https://repl.it/github/besoeasy/nano-payment)
+[Repl.it](https://repl.it/github/besoeasy/nano-payment)
 
 Deploy TO Heroku [FREE] 
 
