@@ -20,7 +20,7 @@ you can use Using http requests
 APP /seed/sendto/amount
 
 
-# TO-DO 
+## TO-DO 
 
   - <s>receive block </s>
   - move seed to header
@@ -29,3 +29,10 @@ APP /seed/sendto/amount
   - concurrency 
   - work caching 
   - multiple account number selection
+
+
+## Donations & Feedback 
+
+I Do not need Donations, i created this for my love of nano. 
+
+If you like this project please donate to https://github.com/marvinroger/nanocurrency-js , this project is heavily inspired on work done by @marvinroger on nanocurrency-js
