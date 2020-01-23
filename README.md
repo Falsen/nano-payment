@@ -30,8 +30,11 @@ APP /seed/sendto/amount
   - work caching 
   - multiple account number selection
 
+## Feedback 
 
-## Donations & Feedback 
+Please open issues for your problems, pull requests are welcomed !
+
+## Donations 
 
 I Do not need Donations, i created this for my love of nano. 
 
