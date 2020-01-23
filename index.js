@@ -159,11 +159,11 @@ address = nanocurrency.deriveAddress(publicKey)
 
   
 previous = await getrecentblock(address)
-console.log("LAST BLOCK : " +previous)
+console.log("LASTBLOCK : " +previous)
 pow = await nanocurrency.computeWork(previous)
-console.log("WORK : " + pow)
+console.log("POW WORK  : " + pow)
 cbal = await account_info(address)
-console.log("BALANCE : " + cbal)
+console.log("BALANCE   : " + cbal)
 
 x = new BigNumber('1000000000000000000000000000000')
 xx = x.multipliedBy(nano).toFixed()
@@ -189,20 +189,20 @@ app.get('/', (request, reply) => {
 app.get('/fetch/:seed', async (request, reply) => {
 console.log(new Date())
 
-  seed = request.params.seed
-  bing = await fetchpending(seed)
+seed = request.params.seed
+bing = await fetchpending(seed)
 
-  reply.send(bing)
+reply.send(bing)
 })
 
 app.get('/send/:seed/:sendto/:amount', async (request, reply) => {
 console.log(new Date())
 
-  seed = request.params.seed
-    sendto = request.params.sendto
-	  amount = request.params.amount
+seed = request.params.seed
+sendto = request.params.sendto
+amount = request.params.amount
 
-  bing = await send(seed,sendto,amount)
+bing = await send(seed,sendto,amount)
 
-  reply.send(bing)
+reply.send(bing)
 })
