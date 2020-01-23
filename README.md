@@ -20,9 +20,10 @@ npm start
 
 ## Usage 
 
-you can use Using http requests 
-APP /seed/sendto/amount
-
+- SEND
+APP /send/seed/sendto/amount
+- FETCHPENDING
+APP /fetch/seed
 
 ## TO-DO 
 
