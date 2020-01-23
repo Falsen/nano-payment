@@ -20,10 +20,10 @@ npm start
 
 ## Usage 
 
-- SEND
--- APP /send/seed/sendto/amount
-- FETCHPENDING
--- APP /fetch/seed
+SEND
+ APP /send/seed/sendto/amount
+FETCHPENDING
+ APP /fetch/seed
 
 ## TO-DO 
 
