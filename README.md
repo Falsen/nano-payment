@@ -3,7 +3,7 @@
 
 Edit and Host On Repl.it
 
-https://repl.it/@amanistesting/nano-payment
+[![Repl.it](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Repl.it_logo.svg/1200px-Repl.it_logo.svg.png)](https://repl.it/@amanistesting/nano-payment)
 
 Deploy TO Heroku [FREE] 
 
