@@ -7,15 +7,7 @@ const app = express()
 app.listen(process.env.PORT || 5000,  '0.0.0.0')
 
 const nanonode = 'https://nanovault.io/api/node-api'
-
-const reparr = [
-'nano_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or',
-'nano_1bananobjcrqugm87e8p3kxkhy7d1bzkty53n889iyunm83cp14rb9fin78p',
-'nano_3jwrszth46rk1mu7rmb4rhm54us8yg1gw3ipodftqtikf5yqdyr7471nsg1k', 
-'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd' 
- ];
-
-const representative = reparr[Math.floor(Math.random()*reparr.length)]
+const representative = 'nano_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or'
 
 //const ends
 
@@ -172,19 +164,45 @@ balance = puki.minus(xx)
 
 balancex = balance.toFixed()
 
+if(balancex>0){
+	
 dd = { balance: balancex, link: sendto, previous: previous, representative: representative, work: pow }
-xxx = await nanocurrency.createBlock(secretKey, dd);
-
+xxx = await nanocurrency.createBlock(secretKey, dd)
 retr = await publish(xxx.block) 
+
+}else{
+	
+console.log("NO BALANCE ")	
+retr = '{ "hash" : "no_balance" }'
+
+}
+
+
 return retr
 }
 
 // functions ends
 
 
+
+
+// express api
 app.get('/', (request, reply) => {
   reply.send('OK')
 })
+
+
+app.get('/balance/:addr', async (request, reply) => {
+	
+	b = 	await account_info(request.params.addr)
+	puki = new BigNumber(b)
+	
+	b2 = puki.dividedBy(1000000000000000000000000000000) 
+ 
+    reply.send({ balance : b2 })
+	
+})
+
 
 app.get('/fetch/:seed', async (request, reply) => {
 console.log(new Date())
